@@ -1,5 +1,29 @@
 #include "user.h"
 
+void user() {
+    void first_input(Text * txt, int initial, int& n);
+    void append(Text * txt);
+    void print_contents(Text * txt, int n);
+    void print_precent(Text * txt, int n);
+    int find_max_precent(Text * txt, int n);
+
+    int initial_size = 10, num = 0;
+    Text* text = new Text[initial_size];
+
+    first_input(text, initial_size, num);
+    print_contents(text, num);
+    print_precent(text, num);
+    append(text);
+    print_contents(text, num);
+    print_precent(text, num);
+    int max_precent = find_max_precent(text, num);
+
+    cout << endl << "The text with the highest consonant percentage:" << endl;
+    cout << "Consonant percentage for text " << max_precent + 1 << ": " << text[max_precent].consonant_percentage() << "%" << endl;
+
+    delete[] text;
+}
+
 void first_input(Text* txt, int initial, int& n) {
     int choice = 1;
     int max_size = initial;
@@ -47,20 +71,20 @@ void append(Text* txt) {
     } while (choice != 0);
 }
 
+void print_contents(Text* txt, int n) {
+    cout << "Here you can see the texts you have provided:" << endl << endl;
+    for (int i = 0; i < n; i++) {
+        cout << "Text " << i + 1 << ": ";
+        txt[i].print_text();
+    }
+}
+
 void print_precent(Text* txt, int n) {
     cout << endl << endl;
     int num = 0;
     for (int i = 0; i < n; i++) {
         cout << "Consonant percentage for text " << num + 1 << ": " << txt[i].consonant_percentage() << "%" << endl;
         num++;
-    }
-}
-
-void print_contents(Text* txt, int n) {
-    cout << "Here you can see the texts you have provided:" << endl << endl;
-    for (int i = 0; i < n; i++) {
-        cout << "Text " << i + 1 << ": ";
-        txt[i].print_text();
     }
 }
 
@@ -72,22 +96,4 @@ int find_max_precent(Text* txt, int n) {
         }
     }
     return max_precent;
-}
-
-void user() {
-    int initial_size = 10, num = 0;
-    Text* text = new Text[initial_size];
-
-    first_input(text, initial_size, num);
-    print_contents(text, num);
-    print_precent(text, num);
-    append(text);
-    print_contents(text, num);
-    print_precent(text, num);
-    int max_precent = find_max_precent(text, num);
-
-    cout << endl << "The text with the highest consonant percentage:" << endl;
-    cout << "Consonant percentage for text " << max_precent + 1 << ": " << text[max_precent].consonant_percentage() << "%" << endl;
-
-    delete[] text;
 }
