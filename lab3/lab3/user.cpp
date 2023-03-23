@@ -1,5 +1,14 @@
 #include "user.h"
 
+void intro() {
+    cout << "This programm develops a class that is an abstraction of text" << endl;
+    cout << "and supports operations for adding a string to the text" << endl;
+    cout << "and determining the percentage of consonants in the text." << endl;
+    cout << "Creates an array of objects of this class." << endl;
+    cout << "Adds some new lines to the texts." << endl;
+    cout << "Determines the text with the highest percentage of consonants." << endl << endl;
+}
+
 void user() {
     void first_input(Text * txt, int initial, int& n);
     void append(Text * txt);
@@ -13,9 +22,16 @@ void user() {
     first_input(text, initial_size, num);
     print_contents(text, num);
     print_precent(text, num);
-    append(text);
-    print_contents(text, num);
-    print_precent(text, num);
+    int choice;
+    cout << endl << endl << "Enter 1, if you want to append your texts: ";
+    cin >> choice;
+
+    if (choice == 1) {
+        append(text);
+        print_contents(text, num);
+        print_precent(text, num);
+    }
+    
     int max_precent = find_max_precent(text, num);
 
     cout << endl << "The text with the highest consonant percentage:" << endl;
@@ -72,7 +88,7 @@ void append(Text* txt) {
 }
 
 void print_contents(Text* txt, int n) {
-    cout << "Here you can see the texts you have provided:" << endl << endl;
+    cout << "Here you can see the texts you have provided:" << endl;
     for (int i = 0; i < n; i++) {
         cout << "Text " << i + 1 << ": ";
         txt[i].print_text();

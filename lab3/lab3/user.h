@@ -5,4 +5,5 @@
 
 using namespace std;
 
+void intro();
 void user();
