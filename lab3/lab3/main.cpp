@@ -1,7 +1,7 @@
 #include "user.h"
 
 int main() {
-    intro();
-    user();
-    return 0;
+	intro();
+	user();
+	return 0;
 }

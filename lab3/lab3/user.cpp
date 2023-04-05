@@ -97,10 +97,8 @@ void print_contents(Text* txt, int n) {
 
 void print_precent(Text* txt, int n) {
     cout << endl << endl;
-    int num = 0;
     for (int i = 0; i < n; i++) {
-        cout << "Consonant percentage for text " << num + 1 << ": " << txt[i].consonant_percentage() << "%" << endl;
-        num++;
+        cout << "Consonant percentage for text " << i + 1 << ": " << txt[i].consonant_percentage() << "%" << endl;
     }
 }
 
