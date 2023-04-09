@@ -15,13 +15,13 @@ void user() {
 	string str;
 
 	user_input(str);
-	Multiset A = str == "" ? Multiset() : Multiset(str);
+	Multiset A = (str == "" ? Multiset() : Multiset(str));
 
 	user_input(str);
-	Multiset B = str == "" ? Multiset() : Multiset(str);
+	Multiset B = (str == "" ? Multiset() : Multiset(str));
 
 	user_input(str);
-	Multiset C = str == "" ? Multiset() : Multiset(str);
+	Multiset C = (str == "" ? Multiset() : Multiset(str));
 
 	Multiset K = A + B;
 	Multiset Z = C * B;

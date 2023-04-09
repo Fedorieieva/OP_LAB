@@ -15,6 +15,7 @@ private:
 public:
 	Multiset();
 	Multiset(const string& s);
+	Multiset(const Multiset& other);
 	string Get_Multiset();
 	Multiset operator +(const Multiset& other);
 	Multiset operator *(const Multiset& other);

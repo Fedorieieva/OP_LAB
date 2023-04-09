@@ -28,6 +28,8 @@ Multiset::Multiset(const string& s) {
 	}
 }
 
+Multiset::Multiset(const Multiset& other) { set = other.set; }
+
 string Multiset::Get_Multiset() { return set; }
 
 Multiset Multiset::operator +(const Multiset& other) {
