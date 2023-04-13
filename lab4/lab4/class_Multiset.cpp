@@ -32,7 +32,21 @@ Multiset::Multiset(const Multiset& other) { set = other.set; }
 
 string Multiset::Get_Multiset() { return set; }
 
-Multiset Multiset::operator +(const Multiset& other) {
+void Multiset::sort_set() {
+	char current;
+	int j;
+	for (int i = 1; i < set.length(); i++) {
+		current = set[i];
+		j = i - 1;
+		while (j >= 0 && set[j] > current) {
+			set[j + 1] = set[j];
+			j--;
+		}
+		set[j + 1] = current;
+	}
+}
+
+const Multiset Multiset::operator +(const Multiset& other) {
 	string temp;
 	temp = this->set + other.set;
 	Multiset res;
@@ -40,7 +54,7 @@ Multiset Multiset::operator +(const Multiset& other) {
 	return res;
 }
 
-Multiset Multiset::operator *(const Multiset& other) {
+const Multiset Multiset::operator *(const Multiset& other) {
 	string temp;
 	for (int i = 0; i < other.set.size(); i++) {
 		if (in_multiset(other.set[i]))
@@ -51,7 +65,7 @@ Multiset Multiset::operator *(const Multiset& other) {
 	return res;
 }
 
-Multiset Multiset::operator -(const Multiset& other) {
+const Multiset Multiset::operator -(const Multiset& other) {
 	string temp;
 	for (int i = 0; i < this->set.size(); i++) {
 		if (!in_multiset(other.set, this->set[i]))

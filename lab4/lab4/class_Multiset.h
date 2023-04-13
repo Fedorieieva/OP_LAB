@@ -17,8 +17,9 @@ public:
 	Multiset(const string& s);
 	Multiset(const Multiset& other);
 	string Get_Multiset();
-	Multiset operator +(const Multiset& other);
-	Multiset operator *(const Multiset& other);
-	Multiset operator -(const Multiset& other);
+	void sort_set();
+	const Multiset operator +(const Multiset& other);
+	const Multiset operator *(const Multiset& other);
+	const Multiset operator -(const Multiset& other);
 	friend ostream& operator <<(ostream& os, const Multiset& m);
 };

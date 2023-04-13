@@ -13,6 +13,7 @@ void user() {
 	void user_input(string & s);
 	void output_set(Multiset & m);
 	string str;
+	char choice = 'N';
 
 	user_input(str);
 	Multiset A = (str == "" ? Multiset() : Multiset(str));
@@ -36,6 +37,12 @@ void user() {
 	output_set(B);
 	cout << "C = ";
 	output_set(C);
+
+	cout << endl << "Do you want your output set to be sorted in alphabetical order [Y/N]? ";
+	cin >> choice;
+
+	if (choice == 'Y' || choice == 'y') 
+		D.sort_set();
 
 	cout << endl << "(A + B) - (C * B) = ";
 	output_set(D);
