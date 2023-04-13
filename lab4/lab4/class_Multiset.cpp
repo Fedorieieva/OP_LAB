@@ -21,11 +21,12 @@ string Multiset::unique(string s) {
 Multiset::Multiset() { set = ""; }
 
 Multiset::Multiset(const string& s) {
-	set = "";
+	string temp = "";
 	for (int i = 0; i < s.size(); i++) {
 		if (!isdigit(s[i]) && s[i] != ' ' && s[i] != '	')
-			set += s[i];
+			temp += s[i];
 	}
+	set = unique(temp);
 }
 
 Multiset::Multiset(const Multiset& other) { set = other.set; }

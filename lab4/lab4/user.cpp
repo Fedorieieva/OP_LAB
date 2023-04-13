@@ -5,7 +5,7 @@ void intro() {
 	cout << "along with the required constructors, getters, and methods for determining" << endl;
 	cout << "the membership of a given element in the set. It also includes overloaded" << endl;
 	cout << "operators +, *, and - for finding the union, intersection, and difference of" << endl;
-	cout << "sets, respectively. Additionally, we will be created three sets (A, B, C) using" << endl;
+	cout << "sets, respectively. Additionally, there will be created three sets (A, B, C) using" << endl;
 	cout << "different constructors and build set D = (A + B) - (C * B)" << endl;
 }
 
@@ -61,6 +61,7 @@ void user_input(string& s) {
 	cout << endl << "Please enter charecters for one of three sets." << endl;
 	cout << "NOTE 1: if you press Enter before providing any input, your set will be empty." << endl;
 	cout << "NOTE 2: if you enter digits, they will not be present in your set." << endl;
+	cout << "NOTE 3: if you enter duplicates, your input sets will containe only unique charachters." << endl;
 	cout << "Input: ";
 	getline(cin, s);
 }
