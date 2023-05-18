@@ -19,22 +19,19 @@ private:
         }
     };
 
-    Node** table;  // Pointer to an array of hash node pointers
-    int capacity;      // Current capacity of the hash table
-    int size;          // Current size of the hash table
+    Node** table;
+    int capacity;     
+    int size;       
 
-    // Resize the hash table to accommodate more elements
     void resize() {
         int newCapacity = capacity * 2;
-        Node** newTable = new Node * [newCapacity] {}; // Allocate memory for the new hash-table
+        Node** newTable = new Node * [newCapacity] {}; 
         for (int i = 0; i < capacity; i++) {
             Node* current = table[i];
-            // Rehash all the nodes in the current chain
             while (current != nullptr) {
                 Node* next = current->next;
                 int newIndex = hashFunction(current->key);
 
-                // Insert the node into the new hash table
                 if (newTable[newIndex] == nullptr) {
                     newTable[newIndex] = current;
                     current->next = nullptr;
@@ -42,12 +39,10 @@ private:
                 else {
                     Node* newCurrent = newTable[newIndex];
 
-                    // Traverse to the end of the chain in the new table
                     while (newCurrent->next != nullptr) {
                         newCurrent = newCurrent->next;
                     }
 
-                    // Insert the node at the end of the chain in the new table
                     newCurrent->next = current;
                     current->next = nullptr;
                 }
@@ -56,9 +51,9 @@ private:
             }
         }
 
-        delete[] table;  // Free the memory of the old hash table
-        table = newTable;  // Update the table pointer to the new hash table
-        capacity = newCapacity;  // Update the capacity of the hash table
+        delete[] table; 
+        table = newTable;  
+        capacity = newCapacity;  
     }
 
 public:
@@ -101,63 +96,52 @@ public:
     };
 
     HashTable() {
-        capacity = 10;  // Set an initial capacity
-        table = new Node * [capacity] {};  // Allocate memory for the hash table
-        size = 0;  // Initialize size to
+        capacity = 10;  
+        table = new Node * [capacity] {};  
+        size = 0; 
     }
 
     ~HashTable() {
-        clear();  // Call the clear() function to delete all nodes in the hash table
-        delete[] table;  // Free the memory allocated for the hash table array
+        clear();  
+        delete[] table; 
     }
 
     int GetSize() { return size; }
 
-    // Hash function
     int hashFunction(const KeyType& key) {
-        // Convert the key to an integer hash value
         std::hash<KeyType> hasher;
         return hasher(key) % capacity;
     }
 
-    // Insert a key-value pair into the hash table
     void insert(const KeyType& key, const ValueType& value) {
-        // Check if the hash table needs to be resized
         if (size >= capacity) {
             resize();
         }
 
         int index = hashFunction(key);
 
-        // Create a new hash node
         Node* newNode = new Node(key, value);
 
-        // If the slot is empty, insert the node directly
         if (table[index] == nullptr) {
             table[index] = newNode;
         }
         else {
-            // Collision handling by chaining
             Node* current = table[index];
 
-            // Traverse to the end of the chain
             while (current->next != nullptr) {
                 current = current->next;
             }
 
-            // Insert the new node at the end of the chain
             current->next = newNode;
         }
 
-        size++;  // Increase the size of the hash table
+        size++;  
     }
 
-    // Retrieve the value associated with a key
     ValueType get_value(const KeyType& key) {
         int index = hashFunction(key);
         Node* current = table[index];
 
-        // Traverse the chain to find the node with the matching key
         while (current != nullptr) {
             if (current->key == key) {
                 return current->value;
@@ -165,7 +149,6 @@ public:
             current = current->next;
         }
 
-        // If key is not found, return a default value
         return ValueType();
     }
 
@@ -185,25 +168,21 @@ public:
         return maxKey;
     }
 
-    // Remove a key-value pair from the hash table
     void remove(const KeyType& key) {
         int index = hashFunction(key);
         Node* current = table[index];
         Node* prev = nullptr;
 
-        // Traverse the chain to find the node with the matching key
         while (current != nullptr) {
             if (current->key == key) {
-                // If the node is the first in the chain
                 if (prev == nullptr) {
                     table[index] = current->next;
                 }
                 else {
-                    // Link the previous node to the next node
                     prev->next = current->next;
                 }
                 delete current;
-                size--;  // Decrease the size of the hash table
+                size--; 
                 return;
             }
             prev = current;
