@@ -41,7 +41,7 @@ void delete_element(HashTable<T1, T2>& table) {
 
 template<typename T1, typename T2>
 void max_key_val(HashTable<T1, T2>& table) {
-    T1 key = table.get_max_key();
+    T1 key = table.GetMaxKey();
     cout << "Here you can see the maximum key-value pair by key:" << endl;
     table.printPair(key);
 }

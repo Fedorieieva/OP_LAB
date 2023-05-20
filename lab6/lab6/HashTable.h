@@ -15,7 +15,7 @@ private:
         Node(const KeyType& k, const ValueType& val);
     };
 
-    unsigned int MurmurHash2(const void* key, int len, unsigned int seed);
+    unsigned int MurmurHash2(const KeyType* key, int len, int seed);
     int hashFunction(const KeyType& key);
     void resize();
 
@@ -31,26 +31,26 @@ public:
         Node* current_node;
 
     public:
-        struct Entry {
+        struct Pair {
             const KeyType& key;
             ValueType& value;
 
-            Entry(const KeyType& k, ValueType& val);
+            Pair(const KeyType& k, ValueType& val);
         };
 
         Iterator(HashTable* hash_t, int idx, Node* node);
         Iterator& operator++();
         bool operator!=(const Iterator& other);
-        Entry operator*();
+        Pair operator*();
     };
 
     HashTable();
     ~HashTable();
     int GetSize();
     void insert(const KeyType& key, const ValueType& value);
-    ValueType get_value(const KeyType& key);
+    ValueType GetValue(const KeyType& key);
     bool ispresent(const KeyType& key);
-    KeyType get_max_key();
+    KeyType GetMaxKey();
     void remove(const KeyType& key);
     void clear();
     void printTable();

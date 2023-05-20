@@ -8,7 +8,7 @@ HashTable<KeyType, ValueType>::Node::Node(const KeyType& k, const ValueType& val
 }
 
 template<typename KeyType, typename ValueType>
-unsigned int HashTable<KeyType, ValueType>::MurmurHash2(const void* key, int len, unsigned int seed) {
+unsigned int HashTable<KeyType, ValueType>::MurmurHash2(const KeyType* key, int len, int seed) {
     const unsigned int m = 0x5bd1e995;
     const int r = 24;
 
@@ -93,7 +93,7 @@ HashTable<KeyType, ValueType>::Iterator::Iterator(HashTable* hash_t, int idx, No
 }
 
 template<typename KeyType, typename ValueType>
-HashTable<KeyType, ValueType>::Iterator::Entry::Entry(const KeyType& k, ValueType& val)
+HashTable<KeyType, ValueType>::Iterator::Pair::Pair(const KeyType& k, ValueType& val)
     : key(k), value(val) {}
 
 template<typename KeyType, typename ValueType>
@@ -119,8 +119,8 @@ bool HashTable<KeyType, ValueType>::Iterator::operator!=(const Iterator& other) 
 }
 
 template<typename KeyType, typename ValueType>
-typename HashTable<KeyType, ValueType>::Iterator::Entry HashTable<KeyType, ValueType>::Iterator::operator*() {
-    return Entry(current_node->key, current_node->value);
+typename HashTable<KeyType, ValueType>::Iterator::Pair HashTable<KeyType, ValueType>::Iterator::operator*() {
+    return Pair(current_node->key, current_node->value);
 }
 
 template<typename KeyType, typename ValueType>
@@ -168,7 +168,7 @@ void HashTable<KeyType, ValueType>::insert(const KeyType& key, const ValueType& 
 }
 
 template<typename KeyType, typename ValueType>
-ValueType HashTable<KeyType, ValueType>::get_value(const KeyType& key) {
+ValueType HashTable<KeyType, ValueType>::GetValue(const KeyType& key) {
     int index = hashFunction(key);
     Node* current = table[index];
 
@@ -198,7 +198,7 @@ bool HashTable<KeyType, ValueType>::ispresent(const KeyType& key) {
 }
 
 template<typename KeyType, typename ValueType>
-KeyType HashTable<KeyType, ValueType>::get_max_key() {
+KeyType HashTable<KeyType, ValueType>::GetMaxKey() {
     if (size == 0) {
         cout << "Hash table is empty" << endl;
     }
@@ -266,7 +266,7 @@ void HashTable<KeyType, ValueType>::printTable() {
 
 template<typename KeyType, typename ValueType>
 void HashTable<KeyType, ValueType>::printPair(const KeyType& key) {
-    cout << "Key: " << key << " - Value: " << get_value(key) << endl;
+    cout << "Key: " << key << " - Value: " << GetValue(key) << endl;
 }
 
 template<typename KeyType, typename ValueType>
