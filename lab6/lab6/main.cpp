@@ -19,13 +19,48 @@ private:
         }
     };
 
-    Node** table;
-    int capacity;     
-    int size;       
+    unsigned int MurmurHash2(const void* key, int len, unsigned int seed) {
+        const unsigned int m = 0x5bd1e995;
+        const int r = 24;
+
+        unsigned int h = seed ^ len;
+
+        const unsigned char* data = (const unsigned char*)key;
+
+        while (len >= 4) {
+            unsigned int k = *(unsigned int*)data;
+
+            k *= m;
+            k ^= k >> r;
+            k *= m;
+
+            h *= m;
+            h ^= k;
+
+            data += 4;
+            len -= 4;
+        }
+
+        switch (len) {
+        case 3:
+            h ^= data[2] << 16;
+        case 2:
+            h ^= data[1] << 8;
+        case 1:
+            h ^= data[0];
+            h *= m;
+        };
+
+        h ^= h >> 13;
+        h *= m;
+        h ^= h >> 15;
+
+        return h;
+    }
 
     void resize() {
         int newCapacity = capacity * 2;
-        Node** newTable = new Node * [newCapacity] {}; 
+        Node** newTable = new Node * [newCapacity] {};
         for (int i = 0; i < capacity; i++) {
             Node* current = table[i];
             while (current != nullptr) {
@@ -51,10 +86,14 @@ private:
             }
         }
 
-        delete[] table; 
-        table = newTable;  
-        capacity = newCapacity;  
+        delete[] table;
+        table = newTable;
+        capacity = newCapacity;
     }
+
+    Node** table;
+    int capacity;     
+    int size;         
 
 public:
     class Iterator {
@@ -109,8 +148,8 @@ public:
     int GetSize() { return size; }
 
     int hashFunction(const KeyType& key) {
-        std::hash<KeyType> hasher;
-        return hasher(key) % capacity;
+        unsigned int hash = MurmurHash2(&key, sizeof(key), 0);
+        return hash % capacity;
     }
 
     void insert(const KeyType& key, const ValueType& value) {
