@@ -16,6 +16,7 @@ private:
     };
 
     unsigned int MurmurHash2(const void* key, int len, unsigned int seed);
+    int hashFunction(const KeyType& key);
     void resize();
 
     Node** table;
@@ -46,7 +47,6 @@ public:
     HashTable();
     ~HashTable();
     int GetSize();
-    int hashFunction(const KeyType& key);
     void insert(const KeyType& key, const ValueType& value);
     ValueType get_value(const KeyType& key);
     bool ispresent(const KeyType& key);

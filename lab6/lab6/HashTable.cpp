@@ -48,6 +48,12 @@ unsigned int HashTable<KeyType, ValueType>::MurmurHash2(const void* key, int len
 }
 
 template<typename KeyType, typename ValueType>
+int HashTable<KeyType, ValueType>::hashFunction(const KeyType& key) {
+    unsigned int hash = MurmurHash2(&key, sizeof(key), 0);
+    return hash % capacity;
+}
+
+template<typename KeyType, typename ValueType>
 void HashTable<KeyType, ValueType>::resize() {
     int newCapacity = capacity * 2;
     Node** newTable = new Node * [newCapacity] {};
@@ -133,12 +139,6 @@ HashTable<KeyType, ValueType>::~HashTable() {
 template<typename KeyType, typename ValueType>
 int HashTable<KeyType, ValueType>::GetSize() {
     return size;
-}
-
-template<typename KeyType, typename ValueType>
-int HashTable<KeyType, ValueType>::hashFunction(const KeyType& key) {
-    unsigned int hash = MurmurHash2(&key, sizeof(key), 0);
-    return hash % capacity;
 }
 
 template<typename KeyType, typename ValueType>
