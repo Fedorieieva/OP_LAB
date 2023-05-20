@@ -5,7 +5,6 @@ using namespace std;
 template<typename KeyType, typename ValueType>
 class HashTable {
 private:
-    // HashNode class
     class Node {
     public:
         KeyType key;
@@ -92,8 +91,8 @@ private:
     }
 
     Node** table;
-    int capacity;     
-    int size;         
+    int capacity;
+    int size;
 
 public:
     class Iterator {
@@ -103,6 +102,13 @@ public:
         Node* current_node;
 
     public:
+        struct Entry {
+            const KeyType& key;
+            ValueType& value;
+
+            Entry(const KeyType& k, ValueType& val) : key(k), value(val) {}
+        };
+
         Iterator(HashTable* hash_t, int idx, Node* node) {
             hash_table = hash_t;
             current_idx = idx;
@@ -129,20 +135,20 @@ public:
             return current_node != other.current_node;
         }
 
-        std::pair<const KeyType, ValueType> operator*() {
-            return std::make_pair(current_node->key, current_node->value);
+        Entry operator*() {
+            return Entry(current_node->key, current_node->value);
         }
     };
 
     HashTable() {
-        capacity = 10;  
-        table = new Node * [capacity] {};  
-        size = 0; 
+        capacity = 10;
+        table = new Node * [capacity] {};
+        size = 0;
     }
 
     ~HashTable() {
-        clear();  
-        delete[] table; 
+        clear();
+        delete[] table;
     }
 
     int GetSize() { return size; }
@@ -174,7 +180,7 @@ public:
             current->next = newNode;
         }
 
-        size++;  
+        size++;
     }
 
     ValueType get_value(const KeyType& key) {
@@ -191,16 +197,30 @@ public:
         return ValueType();
     }
 
+    bool ispresent(const KeyType& key) {
+        int index = hashFunction(key);
+        Node* current = table[index];
+
+        while (current != nullptr) {
+            if (current->key == key) {
+                return true;
+            }
+            current = current->next;
+        }
+
+        return false;
+    }
+
     KeyType get_max_key() {
         if (size == 0) {
             cout << "Hash table is empty" << endl;
         }
         auto it = begin();
-        KeyType maxKey = (*it).first;
+        KeyType maxKey = (*it).key;
         ++it;
         while (it != end()) {
-            if ((*it).first > maxKey) {
-                maxKey = (*it).first;
+            if ((*it).key > maxKey) {
+                maxKey = (*it).key;
             }
             ++it;
         }
@@ -221,7 +241,7 @@ public:
                     prev->next = current->next;
                 }
                 delete current;
-                size--; 
+                size--;
                 return;
             }
             prev = current;
@@ -249,13 +269,13 @@ public:
         }
         else {
             for (auto it = begin(); it != end(); ++it) {
-                cout << "Key: " << (*it).first << " Value: " << (*it).second << endl;
+                cout << "Key: " << (*it).key << " - Value: " << (*it).value << endl;
             }
         }
     }
 
     void printPair(const KeyType& key) {
-        cout << "Key: " << key << " Value: " << get_value(key) << endl;
+        cout << "Key: " << key << " - Value: " << get_value(key) << endl;
     }
 
     Iterator end() {
@@ -286,6 +306,10 @@ void input_hash_table(HashTable<T1, T2>& table) {
     while (choice != 'n' && choice != 'N') {
         cout << endl << "Please enter your key for the " << count << " table: ";
         cin >> key;
+        if (table.ispresent(key)) {
+            cout << "Key already exists in the hash table. Please enter another key." << endl;
+            continue;
+        }
         cout << "And now please enter your value for the " << count << " table: ";
         cin >> value;
         cout << "Do you want to continue? [y/n]: ";
@@ -302,7 +326,7 @@ void input_hash_table(HashTable<T1, T2>& table) {
 template<typename T1, typename T2>
 void delete_element(HashTable<T1, T2>& table) {
     T1 key;
-    cout << endl << "Here you can see your hash table:" <<endl;
+    cout << endl << "Here you can see your hash table:" << endl;
     table.printTable();
     cout << endl << "Please enter the key for the pair you want to remove from your hash table: ";
     cin >> key;
