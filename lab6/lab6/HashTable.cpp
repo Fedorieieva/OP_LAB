@@ -179,7 +179,7 @@ ValueType HashTable<KeyType, ValueType>::GetValue(const KeyType& key) {
         current = current->next;
     }
 
-    return ValueType();
+    throw runtime_error("There is no such key-value pair in this hashtable");
 }
 
 template<typename KeyType, typename ValueType>
@@ -255,7 +255,6 @@ template<typename KeyType, typename ValueType>
 void HashTable<KeyType, ValueType>::printTable() {
     if (size == 0) {
         cout << "Hash table is empty" << endl;
-        return;
     }
     else {
         for (auto it = begin(); it != end(); ++it) {
@@ -266,7 +265,12 @@ void HashTable<KeyType, ValueType>::printTable() {
 
 template<typename KeyType, typename ValueType>
 void HashTable<KeyType, ValueType>::printPair(const KeyType& key) {
-    cout << "Key: " << key << " - Value: " << GetValue(key) << endl;
+    try {
+        cout << "Key: " << key << " - Value: " << GetValue(key) << endl;
+    }
+    catch (const runtime_error& e) {
+        cout << e.what() << endl;
+    }
 }
 
 template<typename KeyType, typename ValueType>

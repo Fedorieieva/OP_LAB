@@ -1,7 +1,7 @@
 #include "user.h"
 
-void user() {
-    HashTable<int, string> ht;
+template<typename T1, typename T2>
+void user(HashTable<T1, T2>& ht) {
 
     char choice;
     do {

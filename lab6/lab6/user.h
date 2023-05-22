@@ -7,4 +7,5 @@
 
 using namespace std;
 
-void user();
+template<typename T1, typename T2>
+void user(HashTable<T1, T2>& ht);
