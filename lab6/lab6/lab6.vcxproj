@@ -129,11 +129,13 @@
   <ItemGroup>
     <ClCompile Include="HashTable.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="user_functions.cpp" />
+    <ClCompile Include="functions.cpp" />
+    <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HashTable.h" />
-    <ClInclude Include="user_functions.h" />
+    <ClInclude Include="functions.h" />
+    <ClInclude Include="user.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
