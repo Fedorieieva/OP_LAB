@@ -93,8 +93,10 @@ HashTable<KeyType, ValueType>::Iterator::Iterator(HashTable* hash_t, int idx, No
 }
 
 template<typename KeyType, typename ValueType>
-HashTable<KeyType, ValueType>::Iterator::Pair::Pair(const KeyType& k, ValueType& val)
-    : key(k), value(val) {}
+HashTable<KeyType, ValueType>::Iterator::Pair::Pair(const KeyType& k, ValueType& val) {
+    key = k;
+    value = val;
+}
 
 template<typename KeyType, typename ValueType>
 typename HashTable<KeyType, ValueType>::Iterator& HashTable<KeyType, ValueType>::Iterator::operator++() {
