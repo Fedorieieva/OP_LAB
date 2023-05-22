@@ -232,7 +232,6 @@ void HashTable<KeyType, ValueType>::remove(const KeyType& key) {
             }
             delete current;
             size--;
-            return;
         }
         prev = current;
         current = current->next;
