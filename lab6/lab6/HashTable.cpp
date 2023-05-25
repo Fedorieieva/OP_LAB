@@ -68,11 +68,11 @@ void HashTable<KeyType, ValueType>::resize() {
                 current->next = nullptr;
             }
             else {
-                Node* newCurrent = new_table[new_index];
-                while (newCurrent->next != nullptr) {
-                    newCurrent = newCurrent->next;
+                Node* new_current = new_table[new_index];
+                while (new_current->next != nullptr) {
+                    new_current = new_current->next;
                 }
-                newCurrent->next = current;
+                new_current->next = current;
                 current->next = nullptr;
             }
 
@@ -138,6 +138,9 @@ HashTable<KeyType, ValueType>::HashTable() {
 template<typename KeyType, typename ValueType>
 HashTable<KeyType, ValueType>::~HashTable() {
     clear();
+    for (int i = 0; i < capacity; i++) {
+        delete[] table[i];
+    }
     delete[] table;
 }
 
@@ -154,10 +157,10 @@ void HashTable<KeyType, ValueType>::insert(const KeyType& key, const ValueType& 
 
     int index = hashFunction(key);
 
-    Node* newNode = new Node(key, value);
+    Node* new_node = new Node(key, value);
 
     if (table[index] == nullptr) {
-        table[index] = newNode;
+        table[index] = new_node;
     }
     else {
         Node* current = table[index];
@@ -166,7 +169,7 @@ void HashTable<KeyType, ValueType>::insert(const KeyType& key, const ValueType& 
             current = current->next;
         }
 
-        current->next = newNode;
+        current->next = new_node;
     }
 
     size++;
