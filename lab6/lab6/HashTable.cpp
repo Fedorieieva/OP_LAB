@@ -55,20 +55,20 @@ int HashTable<KeyType, ValueType>::hashFunction(const KeyType& key) {
 
 template<typename KeyType, typename ValueType>
 void HashTable<KeyType, ValueType>::resize() {
-    int newCapacity = capacity * 2;
-    Node** newTable = new Node * [newCapacity] {};
+    int new_capacity = capacity * 2;
+    Node** new_table = new Node * [new_capacity] {};
     for (int i = 0; i < capacity; i++) {
         Node* current = table[i];
         while (current != nullptr) {
             Node* next = current->next;
-            int newIndex = hashFunction(current->key);
+            int new_index = hashFunction(current->key);
 
-            if (newTable[newIndex] == nullptr) {
-                newTable[newIndex] = current;
+            if (new_table[new_index] == nullptr) {
+                new_table[new_index] = current;
                 current->next = nullptr;
             }
             else {
-                Node* newCurrent = newTable[newIndex];
+                Node* newCurrent = new_table[new_index];
                 while (newCurrent->next != nullptr) {
                     newCurrent = newCurrent->next;
                 }
@@ -80,9 +80,12 @@ void HashTable<KeyType, ValueType>::resize() {
         }
     }
 
+    for (int i = 0; i < capacity; i++) {
+        delete[] table[i];
+    }
     delete[] table;
-    table = newTable;
-    capacity = newCapacity;
+    table = new_table;
+    capacity = new_capacity;
 }
 
 template<typename KeyType, typename ValueType>
