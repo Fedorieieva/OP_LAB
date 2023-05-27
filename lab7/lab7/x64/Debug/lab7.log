@@ -1,0 +1,7 @@
+﻿  Date.cpp
+  MyForm.cpp
+C:\Users\Admin\OneDrive\Робочий стіл\OP_LAB\lab7\lab7\MyForm.cpp(9,15): warning C4551: в вызове функции отсутствует список аргументов
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Создание кода...
+  Date.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  lab7.vcxproj -> C:\Users\Admin\OneDrive\Робочий стіл\OP_LAB\lab7\x64\Debug\lab7.exe

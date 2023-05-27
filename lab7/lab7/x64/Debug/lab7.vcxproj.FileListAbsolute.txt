@@ -1,0 +1,8 @@
+C:\Users\Admin\Desktop\visual studio\lab7\lab7\x64\Debug\lab7.vcxproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\visual studio\lab7\lab7\x64\Debug\lab7.vcxproj.SuggestedBindingRedirects.cache
+C:\Users\Admin\Desktop\visual studio\lab7\lab7\x64\Debug\lab7.MyForm.resources
+C:\Users\Admin\Desktop\visual studio\lab7\lab7\x64\Debug\lab7.vcxproj.GenerateResource.cache
+C:\Users\Admin\OneDrive\Робочий стіл\OP_LAB\lab7\lab7\x64\Debug\lab7.vcxproj.AssemblyReference.cache
+C:\Users\Admin\OneDrive\Робочий стіл\OP_LAB\lab7\lab7\x64\Debug\lab7.vcxproj.SuggestedBindingRedirects.cache
+C:\Users\Admin\OneDrive\Робочий стіл\OP_LAB\lab7\lab7\x64\Debug\lab7.MyForm.resources
+C:\Users\Admin\OneDrive\Робочий стіл\OP_LAB\lab7\lab7\x64\Debug\lab7.vcxproj.GenerateResource.cache
