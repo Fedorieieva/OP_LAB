@@ -69,25 +69,29 @@ namespace lab7 {
 			// 
 			this->output_txt->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->output_txt->Location = System::Drawing::Point(191, 67);
+			this->output_txt->Location = System::Drawing::Point(72, 111);
 			this->output_txt->Name = L"output_txt";
-			this->output_txt->Size = System::Drawing::Size(797, 33);
+			this->output_txt->Size = System::Drawing::Size(635, 33);
 			this->output_txt->TabIndex = 0;
-			this->output_txt->Text = L"day of the week";
+			this->output_txt->Text = L"\r\n";
 			this->output_txt->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(29, 46);
+			this->textBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->textBox1->Location = System::Drawing::Point(77, 59);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(126, 22);
+			this->textBox1->Size = System::Drawing::Size(199, 34);
 			this->textBox1->TabIndex = 1;
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(29, 104);
+			this->textBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->textBox2->Location = System::Drawing::Point(484, 59);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(126, 22);
+			this->textBox2->Size = System::Drawing::Size(199, 34);
 			this->textBox2->TabIndex = 2;
 			// 
 			// label2
@@ -95,7 +99,7 @@ namespace lab7 {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label2->Location = System::Drawing::Point(24, 9);
+			this->label2->Location = System::Drawing::Point(224, 9);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(341, 29);
 			this->label2->TabIndex = 3;
@@ -105,7 +109,7 @@ namespace lab7 {
 			// 
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button2->Location = System::Drawing::Point(143, 166);
+			this->button2->Location = System::Drawing::Point(317, 174);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(108, 39);
 			this->button2->TabIndex = 5;
@@ -119,7 +123,7 @@ namespace lab7 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->ClientSize = System::Drawing::Size(872, 248);
+			this->ClientSize = System::Drawing::Size(740, 248);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->textBox2);
