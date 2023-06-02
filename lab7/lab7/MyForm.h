@@ -159,7 +159,7 @@ namespace lab7 {
 
 			if ((day2 < 1 || day2 > 31 || month2 < 1 || month2 > 12) || (day1 < 1 || day1 > 31 || month1 < 1 || month1 > 12))
 			{
-				MessageBox::Show(this, "Invalid date input.", "Error");
+				throw gcnew ArgumentException("Invalid date input.");
 				output_txt->Text = "Wrong input.";
 			}
 
@@ -188,6 +188,9 @@ namespace lab7 {
 		}
 		catch (FormatException^) {
 			MessageBox::Show(this, "Invalid date format. Please enter dates in the format 'dd.mm.yyyy'.", "Error");
+		}
+		catch (ArgumentException^ ex) {
+			MessageBox::Show(ex->Message, "Error");
 		}
 		catch (Exception^ ex) {
 			MessageBox::Show(ex->Message);
