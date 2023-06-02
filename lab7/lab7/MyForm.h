@@ -143,11 +143,26 @@ namespace lab7 {
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		array<String^>^ d1;
+		array<String^>^ d2;
+
 		String^ date1 = textBox1->Text;
 		String^ date2 = textBox2->Text;
-		array<String^>^ d1 = date1->Split('.');
-		array<String^>^ d2 = date2->Split('.');
+		
 		try {
+			d1 = date1->Split('.');
+			d2 = date2->Split('.');
+
+			if ((d1->Length != 3) && (d1->Length != 3)) {
+				throw gcnew FormatException("Both dates are invalid. Please enter dates in the format 'dd.mm.yyyy'.");
+			}
+
+			if (d1->Length != 3) {
+				throw gcnew FormatException("Invalid date 1 input. Please enter dates in the format 'dd.mm.yyyy'.");
+			}
+			if (d1->Length != 3) {
+				throw gcnew FormatException("Invalid date 2 input. Please enter dates in the format 'dd.mm.yyyy'.");
+			}
 
 			int day1 = Convert::ToInt32(d1[0]);
 			int month1 = Convert::ToInt32(d1[1]);
@@ -157,10 +172,20 @@ namespace lab7 {
 			int month2 = Convert::ToInt32(d2[1]);
 			int year2 = Convert::ToInt32(d2[2]);
 
-			if ((day2 < 1 || day2 > 31 || month2 < 1 || month2 > 12) || (day1 < 1 || day1 > 31 || month1 < 1 || month1 > 12))
+			if ((day2 < 1 || day2 > 31 || month2 < 1 || month2 > 12) && (day1 < 1 || day1 > 31 || month1 < 1 || month1 > 12)) {
+				throw gcnew ArgumentException("Invalid date input. Both dates are incorrect.");
+			}
+
+			if ((day2 < 1 || day2 > 31 || month2 < 1 || month2 > 12))
 			{
-				throw gcnew ArgumentException("Invalid date input.");
-				output_txt->Text = "Wrong input.";
+				throw gcnew ArgumentException("Invalid date input. Date 2 is incorrect.");
+				output_txt->Text = "Wrong input. Date 2 is incorrect";
+			}
+
+			if ((day1 < 1 || day1 > 31 || month1 < 1 || month1 > 12))
+			{
+				throw gcnew ArgumentException("Invalid date input. Dtate 1 is incorrect.");
+				output_txt->Text = "Wrong input. Date 1 is incorrect";
 			}
 
 			Date date_1(day1, month1, year1);
@@ -186,8 +211,8 @@ namespace lab7 {
 				output_txt->Text = "Dates have different days of the week.";
 			}
 		}
-		catch (FormatException^) {
-			MessageBox::Show(this, "Invalid date format. Please enter dates in the format 'dd.mm.yyyy'.", "Error");
+		catch (FormatException^ ex) {
+			MessageBox::Show(ex->Message);
 		}
 		catch (ArgumentException^ ex) {
 			MessageBox::Show(ex->Message, "Error");
